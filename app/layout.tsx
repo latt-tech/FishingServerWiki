@@ -4,7 +4,6 @@ import './global.css';
 import { source } from '@/lib/source';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { baseOptions } from '@/lib/layout.shared';
-import WikiPatcher from '@/components/wikipatcher';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,8 +14,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="zh-CN" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <Provider>
-          <WikiPatcher />
-          <DocsLayout tree={source.getPageTree()} {...baseOptions()}>
+          <DocsLayout 
+            tree={source.getPageTree()} 
+            {...baseOptions()}
+            i18n={{
+              languages: [{ locale: 'zh', name: '中文' }],
+              defaultLanguage: 'zh'
+            } as any}
+          >
             {children}
           </DocsLayout>
         </Provider>
