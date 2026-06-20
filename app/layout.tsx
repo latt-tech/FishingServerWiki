@@ -14,7 +14,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="zh-CN" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <Provider>
-          <DocsLayout tree={source.getPageTree()} {...baseOptions()}>
+          <DocsLayout 
+            tree={source.getPageTree()} 
+            {...baseOptions()}
+            i18n={{
+              toc: '本页目录',
+              search: '搜索',
+              searchNoResult: '没找到结果喵...',
+              tocNoHeadings: '本页没有标题'
+            }}
+          >
             {children}
           </DocsLayout>
         </Provider>
